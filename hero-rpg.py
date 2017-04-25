@@ -13,11 +13,18 @@ class Hero:
     def __init__(self, health=10, power=5):
         self.health = health
         self.power = power
+    def attack(self, target):
+        target.health -= self.power
+        print("You do {} damage to {}.".format(self.power, target.name))
+        if target.health <= 0:
+            print("{} is dead.".format(target.name))
+
 
 class Goblin:
-    def __init__(self, health=6, power=2):
+    def __init__(self, name='Shagrat', health=6, power=2):
         self.health = health
         self.power = power
+        self.name = name
 
 
 def main():
@@ -30,7 +37,7 @@ def main():
 
     while goblin.health > 0 and hero.health > 0:
         print("You have {} health and {} power.".format(hero.health, hero.power))
-        print("The goblin has {} health and {} power.".format(goblin.health, goblin.power))
+        print("{} has {} health and {} power.".format(goblin.name, goblin.health, goblin.power))
         print()
         print("What do you want to do?")
         print("1. fight goblin")
@@ -39,11 +46,13 @@ def main():
         print("> ", end=' ')
         inpt = input()
         if inpt == "1":
+            hero.attack(goblin)
             # Hero attacks goblin
-            goblin.health -= hero.power
-            print("You do {} damage to the goblin.".format(hero.power))
-            if goblin.health <= 0:
-                print("The goblin is dead.")
+            # goblin.health -= hero.power
+            # print("You do {} damage to the goblin.".format(hero.power))
+            # if goblin.health <= 0:
+            #     print("The goblin is dead.")
+
         elif inpt == "2":
             pass
         elif inpt == "3":
@@ -55,7 +64,7 @@ def main():
         if goblin.health > 0:
             # Goblin attacks hero
             hero.health -= goblin.power
-            print("The goblin does {} damage to you.".format(goblin.power))
+            print("{} does {} damage to you.".format(goblin.name, goblin.power))
             if hero.health <= 0:
                 print("You are dead.")
 
