@@ -20,7 +20,11 @@ class Hero:
             self.name, self.power, target.name))
         if target.health <= 0:
             print("{} is dead.".format(target.name))
-
+    def alive(self):
+        if self.health > 0:
+            return True
+        else:
+            return False
 
 class Goblin:
     def __init__(self, name='Shagrat', health=6, power=2):
@@ -33,18 +37,18 @@ class Goblin:
             self.name, self.power, target.name))
         if target.health <= 0:
             print("{} is dead.".format(target.name))
-
+    def alive(self):
+        if self.health > 0:
+            return True
+        else:
+            return False
 
 
 def main():
     hero = Hero()
     goblin = Goblin()
-    # hero.health = 10
-    # hero.power = 5
-    # goblin.health = 6
-    # goblin_power = 2
 
-    while goblin.health > 0 and hero.health > 0:
+    while goblin.alive() and hero.alive():
         print("{} has {} health and {} power.".format(hero.name, hero.health, hero.power))
         print("{} has {} health and {} power.".format(goblin.name, goblin.health, goblin.power))
         print()
@@ -56,12 +60,6 @@ def main():
         inpt = input()
         if inpt == "1":
             hero.attack(goblin)
-            # Hero attacks goblin
-            # goblin.health -= hero.power
-            # print("You do {} damage to the goblin.".format(hero.power))
-            # if goblin.health <= 0:
-            #     print("The goblin is dead.")
-
         elif inpt == "2":
             pass
         elif inpt == "3":
@@ -70,7 +68,7 @@ def main():
         else:
             print("Invalid inpt {}".format(inpt))
 
-        if goblin.health > 0:
+        if goblin.alive():
             # Goblin attacks hero
             goblin.attack(hero)
 
