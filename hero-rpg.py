@@ -10,12 +10,14 @@ In this simple RPG game, the hero fights the goblin. He has the options to:
 """
 
 class Hero:
-    def __init__(self, health=10, power=5):
+    def __init__(self, name='Samwise Gamgee', health=10, power=5):
         self.health = health
         self.power = power
+        self.name = name
     def attack(self, target):
         target.health -= self.power
-        print("You do {} damage to {}.".format(self.power, target.name))
+        print("{} does {} damage to {}.".format(
+            self.name, self.power, target.name))
         if target.health <= 0:
             print("{} is dead.".format(target.name))
 
@@ -25,6 +27,13 @@ class Goblin:
         self.health = health
         self.power = power
         self.name = name
+    def attack(self, target):
+        target.health -= self.power
+        print("{} does {} damage to {}.".format(
+            self.name, self.power, target.name))
+        if target.health <= 0:
+            print("{} is dead.".format(target.name))
+
 
 
 def main():
@@ -36,10 +45,10 @@ def main():
     # goblin_power = 2
 
     while goblin.health > 0 and hero.health > 0:
-        print("You have {} health and {} power.".format(hero.health, hero.power))
+        print("{} has {} health and {} power.".format(hero.name, hero.health, hero.power))
         print("{} has {} health and {} power.".format(goblin.name, goblin.health, goblin.power))
         print()
-        print("What do you want to do?")
+        print("What does {} want to do?".format(hero.name))
         print("1. fight goblin")
         print("2. do nothing")
         print("3. flee")
@@ -63,10 +72,7 @@ def main():
 
         if goblin.health > 0:
             # Goblin attacks hero
-            hero.health -= goblin.power
-            print("{} does {} damage to you.".format(goblin.name, goblin.power))
-            if hero.health <= 0:
-                print("You are dead.")
+            goblin.attack(hero)
 
 if __name__ == "__main__":
   main()
