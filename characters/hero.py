@@ -1,4 +1,4 @@
-import characters.base
+from characters.base import Character
 
 class Hero (Character):
     def __init__ (self, name='Samwise Gamgee', health=10, power=5, coins=0):

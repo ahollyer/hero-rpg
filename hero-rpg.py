@@ -8,21 +8,22 @@ In this simple RPG game, the hero fights the goblin. He has the options to:
 3. flee
 
 """
-import characters
+from characters.hero import Hero
+from characters.enemy import Enemy
 
 def main():
-    hero = characters.Hero.create()
+    hero = Hero.create()
 
 
     waiting = True
     while waiting:
         ans = input('You are stumbling through a dark forest. To your left is a zombie-ridden path, and to your right is a cave full of goblins. What do you do?\n1. Turn left\n2. Turn right\n')
         if ans == '1':
-            enemy = characters.enemy('ZombieBob', 600, 4)
+            enemy = Enemy('ZombieBob', 600, 4)
             print("You quietly creep down the path, but a zombie ambushes you! You must fight!")
             waiting = False
         elif ans == '2':
-            enemy = characters.enemy()
+            enemy = Enemy()
             print("The cave is damp and smells of goblin urine. You hear a noise behind you, and turn just in time to duck away from a goblin's blow. You must fight!")
             waiting = False
         else:
