@@ -8,41 +8,10 @@ In this simple RPG game, the hero fights the goblin. He has the options to:
 3. flee
 
 """
-
-class Character:
-    def __init__(self, name, health, power):
-        self.health = health
-        self.power = power
-        self.name = name
-    def attack(self, target):
-        target.health -= self.power
-        print("{} does {} damage to {}.".format(
-            self.name, self.power, target.name))
-        if target.health <= 0:
-            print("{} is dead.".format(target.name))
-    def alive(self):
-        if self.health > 0:
-            return True
-        else:
-            return False
-    def print_status(self):
-        print("{} has {} health and {} power.".format(self.name, self.health, self.power))
-
-
-class Hero (Character):
-    def __init__ (self, name='Samwise Gamgee', health=10, power=5):
-        super().__init__(name, health, power)
-    @classmethod
-    def create(cls):
-        name = input('What\'s your Hero\'s name?: ')
-        return cls(name)
-class Enemy (Character):
-    def __init__ (self, name = 'Shagrat the goblin', health=6, power=2):
-        super().__init__(name, health, power)
+from characters import Character, Hero, Enemy, Medic
 
 def main():
     hero = Hero.create()
-
 
     waiting = True
     while waiting:
