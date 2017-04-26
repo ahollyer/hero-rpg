@@ -1,5 +1,7 @@
 from random import randint
 
+print("base is imported!")
+
 class Character:
     def __init__(self, name, health, power):
         self.health = health
@@ -7,9 +9,11 @@ class Character:
         self.name = name
 
     def attack(self, target):
-        crit_chance = randint(10)
-        print(crit_chance)
-        target.health -= self.power
+        crit_dice = randint(0, 10)
+        if crit_dice > 7:
+            crit()
+        else:
+            target.health -= self.power
         print("{} does {} damage to {}.".format(
             self.name, self.power, target.name))
         if target.health <= 0:

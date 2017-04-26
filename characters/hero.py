@@ -1,3 +1,5 @@
+import characters.base
+
 class Hero (Character):
     def __init__ (self, name='Samwise Gamgee', health=10, power=5):
         super().__init__(name, health, power)
