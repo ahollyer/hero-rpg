@@ -1,1 +1,1 @@
-print("characters module init works")
+__all__ = ["base", "hero", "enemy"]

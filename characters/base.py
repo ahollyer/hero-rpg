@@ -1,7 +1,5 @@
 from random import randint
 
-print("base is imported!")
-
 class Character:
     def __init__(self, name, health, power):
         self.health = health
@@ -11,7 +9,8 @@ class Character:
     def attack(self, target):
         crit_dice = randint(0, 10)
         if crit_dice > 7:
-            crit()
+            target.health -= self.power * 2
+            print("**{} scores a critical hit!!".format(self.name))
         else:
             target.health -= self.power
         print("{} does {} damage to {}.".format(
@@ -20,14 +19,13 @@ class Character:
             print("{} is dead.".format(target.name))
 
     def alive(self):
-        if self.health > 0:
+        # ZombieBob continues fighting even if dead
+        if self.name == "ZombieBob":
+            return True
+        elif self.health > 0:
             return True
         else:
             return False
-
-    def crit(self):
-        target.health -= self.power * 2
-        print("Critical hit!")
 
     def print_status(self):
         print("{} has {} health and {} power.".format(self.name, self.health, self.power))
