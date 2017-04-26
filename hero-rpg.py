@@ -37,7 +37,7 @@ class Hero (Character):
         name = input('What\'s your Hero\'s name?: ')
         return cls(name)
 class Enemy (Character):
-    def __init__ (self, name = 'Shagrat', health=6, power=2):
+    def __init__ (self, name = 'Shagrat the goblin', health=6, power=2):
         super().__init__(name, health, power)
 
 def main():
@@ -76,7 +76,7 @@ def main():
             print("Goodbye.")
             break
         else:
-            print("Invalid inpt {}".format(inpt))
+            print("Invalid input {}".format(inpt))
 
         if enemy.alive():
             # Goblin attacks hero
