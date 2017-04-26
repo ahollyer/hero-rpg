@@ -1,12 +1,11 @@
 from random import randint
 
-print("base is imported!")
-
 class Character:
-    def __init__(self, name, health, power):
+    def __init__(self, name, health, power, coins=0):
+        self.name = name
         self.health = health
         self.power = power
-        self.name = name
+        self.coins = coins
 
     def attack(self, target):
         crit_dice = randint(0, 10)
