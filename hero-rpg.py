@@ -8,7 +8,7 @@ In this simple RPG game, the hero fights the goblin. He has the options to:
 3. flee
 
 """
-from characters import Character, Hero, Enemy, Medic, Fighter, Ninja, Zombie
+from characters import Character, Hero, Enemy, Medic, Fighter, Ninja, Zombie, Goblin
 
 def main():
     heroClass = input('What character would you like to play? \
@@ -33,7 +33,7 @@ def main():
             print("You quietly creep down the path, but a zombie ambushes you! You must fight!")
             waiting = False
         elif ans == '2':
-            enemy = Enemy('Shagrat the Goblin', 10, 3, 0, 0)
+            enemy = Enemy('Shagrat the Goblin', 10, 3, 0, 5)
             print("The cave is damp and smells of goblin urine. You hear a noise behind you, and turn just in time to duck away from a goblin's blow. You must fight!")
             waiting = False
         else:
@@ -59,7 +59,7 @@ def main():
         else:
             print("Invalid input {}".format(inpt))
         enemy.checkLife(hero)
-        #The enemy.checkLife function  has replace if Enemy alive loop. The enemy attacks through actions within the checkLife function
+        #The enemy.checkLife function has replaced if Enemy alive loop. The enemy attacks through actions within the checkLife function
 
 if __name__ == "__main__":
   main()

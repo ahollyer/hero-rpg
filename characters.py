@@ -7,6 +7,7 @@ class Character:
         self.name = name
         self.evade = evade
         self.max_health = health
+        self.coin = coin
     def attack(self, target):
         self.special(target) #Specials before attacks
         target.health -= self.power
@@ -34,8 +35,6 @@ class Character:
 class Hero (Character):
     def __init__ (self, name, health, power, evade, coin):
         super().__init__(name, health, power, evade, coin)
-    def result(self, target):
-        print('Resultplaceholder')
     @classmethod
     def create(cls):
         name = input('What\'s your Hero\'s name?: ')
@@ -52,6 +51,8 @@ class Enemy (Character):
                 self.attack(target)
         else:
             print("{} is dead.".format(self.name))
+            print('{} gathered {} coins from {}\'s corpse'.format(target.name, self.coin, self.name))
+            target.coin += self.coin
 
 class Zombie (Enemy):
     def __init__ (self, name, health, power, evade, coin):
@@ -60,6 +61,10 @@ class Zombie (Enemy):
         if self.health < 0:
             print('Z O M B I E S  D O  N O T  D I E')
         return True
+
+class Goblin (Enemy):
+    def __init__ (self, name, health, power, evade, coin):
+        super().__init__(name, health, power, evade, coin)
 
 class Fighter (Hero):
     def __init__ (self, name, health=200, power=10, evade=0, coin=0):
